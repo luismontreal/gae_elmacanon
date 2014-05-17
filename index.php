@@ -1,8 +1,8 @@
 <?php
 require 'vendor/autoload.php';
-require '../../../app/controllers.php';
-require '../../../app/models.php';
-require '../../../app/api.php';
+require 'app/controllers.php';
+require 'app/models.php';
+require 'app/api.php';
 /**
  * Step 1: Require the Slim Framework
  *
@@ -13,7 +13,7 @@ require '../../../app/api.php';
  */
 //require 'Slim/Slim.php';
 
-\Slim\Slim::registerAutoloader();
+//\Slim\Slim::registerAutoloader();
 
 /**
  * Step 2: Instantiate a Slim application
@@ -25,7 +25,7 @@ require '../../../app/api.php';
  */
 $app = new \Slim\Slim(array(
     'debug' => true,
-    'templates.path' => '../../../views/pc',
+    'templates.path' => 'views/pc',
 ));
 
 /* 

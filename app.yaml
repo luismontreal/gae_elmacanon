@@ -22,4 +22,5 @@ handlers:
 
 # Serve php scripts.
 - url: /.*
-  script: vendor/slim/slim/index.php
+  script: index.php
+#  script: vendor/slim/slim/index.php
