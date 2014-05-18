@@ -1,8 +1,10 @@
 <?php
 require 'vendor/autoload.php';
+require 'vendor/kint/Kint.class.php';
 require 'app/controllers.php';
 require 'app/models.php';
 require 'app/api.php';
+require 'app/helpers.php';
 /**
  * Step 1: Require the Slim Framework
  *
@@ -41,12 +43,10 @@ $pimple['RedtubeController'] = function ($pimple) {
 };
 
 $pimple['RedtubeModel'] = function ($pimple) {
-    echo '<hr>Created UserService<hr>';
     return new RedtubeModel($pimple);
 };
 
 $pimple['Api'] = function ($pimple) {
-    echo '<hr>Created Db<hr>';
     return new Api($pimple);
 };
 
@@ -59,14 +59,60 @@ $pimple['Api'] = function ($pimple) {
  * is an anonymous function.
  */
 
-// GET route
+// GET routes
 $app->get('/', function () use ($pimple) {
-   //$pimple['app']->render('index.php', array('userCount' => $pimple['UserService']->count()));
-   echo 'Root.  Current User count is ' . $pimple['RedtubeModel']->count();
-        $pimple['app']->render('elements/header.php');
-        $pimple['app']->render('home.php');
-        $pimple['app']->render('elements/footer.php');
+    $page = 1;
+    $search = urlencode('big dick');
+
+    $data['params'] = $params = array(
+        'page' => $page,
+        'search' => $search,
+        'ordering' => 'newest',
+    );
+
+    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
+    
+    $pimple['app']->render('elements/header.php', array('data' => $data));
+    $pimple['app']->render('home.php', array('data' => $data));
+    $pimple['app']->render('elements/footer.php', array('data' => $data));
 });
+
+$app->get('/:search/:page', function ($search, $page) use ($pimple) {
+    if(!is_numeric($page) || $page < 1) {
+        $page = 1;
+    }
+
+    $data['params'] = $params = array(
+        'page' => $page,
+        'search' => $search,
+        'ordering' => 'newest',
+    );
+
+    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
+    
+    $pimple['app']->render('elements/header.php', array('data' => $data));
+    $pimple['app']->render('home.php', array('data' => $data));
+    $pimple['app']->render('elements/footer.php', array('data' => $data));
+})->name('search');
+
+$app->get('/:order/:search/:page', function ($order, $search, $page) use ($pimple) {
+    if(!is_numeric($page) || $page < 1) {
+        $page = 1;
+    }
+    
+    $data['params'] = $params = array(
+        'page' => $page,
+        'search' => $search,
+        'ordering' => $order,
+    );
+    
+    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
+    $data['params'] = $params;
+   
+    $pimple['app']->render('elements/header.php', array('data' => $data));
+    $pimple['app']->render('home.php', array('data' => $data));
+    $pimple['app']->render('elements/footer.php', array('data' => $data));
+})->name('order');
 
 $app->get('/contact', function () use ($pimple) {
    //$pimple['app']->render('contact.php');

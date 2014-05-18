@@ -29,7 +29,7 @@ class MrssReader implements Iterator {
 	public function current() {
 		$itemText = $this->reader->readOuterXML();
 		$itemXml = new SimpleXMLElement($itemText);
-		$itemArray = current(LibFE_Helpers::xmlToArray($itemXml));
+		$itemArray = current($this->xmlToArray($itemXml));
 		return $itemArray;
 	}
 
@@ -48,5 +48,5 @@ class MrssReader implements Iterator {
 			$this->reader->close();
 		return $this->isValid;
 	}
-
+        
 }

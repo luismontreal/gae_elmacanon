@@ -18,10 +18,21 @@ class RedtubeController extends Controller
       $this->model = $di['RedtubeModel'];
    }
 
-   public function find($id) {
-      //$this->app->render('user.php', array('user' => $this->service->find($id)));
-      echo 'Found the user with id = ' . $id . '<br>';
-      var_dump($this->model->find($id));
+   public function searchVideo($params = array()) {
+      $results = $this->model->searchVideo($params);
+      $error = '';
+      
+      if(isset($results['error'])) {
+          $error = $results['error'];
+          $params['search'] = 'big+dick';
+          $results = $this->model->searchVideo($params);
+      }
+      
+      return array(
+          'videos' => current($results['root']['videos']),
+          'count' => $results['root']['count'],
+          'error' => $error,
+      );
    }
 
    public function all() {

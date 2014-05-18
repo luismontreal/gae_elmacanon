@@ -9,15 +9,42 @@ class RedtubeModel
       $this->app = $di['app'];
    }
 
-   public function find($id) {
-      return $this->api->findUser($id);
+   public function searchVideo($params = array()) {
+      $params['data'] = 'redtube.Videos.searchVideos';
+      
+      $redtubeResponse = $this->api->redTubeApiCall($params);
+      return Helpers::xmlToArray(new SimpleXMLElement($redtubeResponse));
    }
 
-   public function all() {
+   public function getVideoById() {
       return $this->api->allUsers();
    }
 
-   public function count() {
+   public function isVideoActive() {
+      return $this->api->countUser();
+   }
+   
+   public function getVideoEmbedCode() {
+      return $this->api->countUser();
+   }
+   
+   public function getDeletedVideos() {
+      return $this->api->countUser();
+   }
+   
+   public function getCategoriesList() {
+      return $this->api->countUser();
+   }
+   
+   public function getTagList() {
+      return $this->api->countUser();
+   }
+   
+   public function getStarList() {
+      return $this->api->countUser();
+   }
+   
+   public function getStarDetailedList() {
       return $this->api->countUser();
    }
 }

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>blog</title>
+    <title>Elmacanon.com best <?= urldecode($data['params']['search'])?> free videos</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="pc/css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="pc/css/global.css" />
-	<link type="text/css" rel="stylesheet" href="pc/css/color-button.css" />
+	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="/pc/css/global.css" />
+	<link type="text/css" rel="stylesheet" href="/pc/css/color-button.css" />
 	<!-- js Boots_from -->
-	<script src="pc/js/jquery.js"></script>
-    <script src="pc/js/bootstrap.min.js"></script>
-    <script src="pc/js/custom.js"></script>
+	<script src="/pc/js/jquery.js"></script>
+    <script src="/pc/js/bootstrap.min.js"></script>
+    <script src="/pc/js/custom.js"></script>
 	<!-- end Boots_from -->
 </head>
 

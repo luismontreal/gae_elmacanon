@@ -1,27 +1,35 @@
 <?
 
-/***** replace with real db access *****/
-
-class Api
-{
+class Api {
+   public $redtubeUrl = 'http://api.redtube.com/';
+   public $call = '';
+   public $memcache_prefix = 'api:redtube:';
+   
    public function __construct(Pimple $di) {
    }
 
-   private function createUser($id) {
-      $user = new stdClass();
-      $user->id = $id;
-      return $user;
-   }
+   public function redTubeApiCall($params = array()) {
+	$query_string = '?';
+        $params['output'] = 'xml';
+        ksort($params);
+       
+        foreach($params as $k=>$v){
+            $query_string .= $k.'='.$v.'&';
+        }
+	
+        $query_string = rtrim($query_string,'&');
 
-   public function findUser($id) {
-      return $this->createUser($id);
-   }
+        $memcache = new Memcache;
+        $mckey = $this->memcache_prefix.$query_string;
+        $content = $memcache->get($mckey);
+        
+        if($content === FALSE || isset($_GET['clearCacheSuperSecret'])) {
+            $content = file_get_contents($this->redtubeUrl.$query_string);
+            $memcache->set($mckey, $content, 3600);
+        }
 
-   public function allUsers() {
-      return array($this->createUser(1), $this->createUser(2), $this->createUser(3));
-   }
-
-   public function countUser() {
-      return rand(1000000,2000000);
-   }
+        //sd($this->memcache_prefix.$query_string);
+        return $content;
+    }
+ 
 }
