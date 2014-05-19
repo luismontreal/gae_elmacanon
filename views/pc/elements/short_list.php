@@ -1,4 +1,5 @@
 <?php
+global $pimple;
 switch ($data['params']['ordering']) {
     case 'mostviewed':
         $order = 'Most Viewed';
@@ -21,7 +22,7 @@ $search = $data['params']['search'];
 				</div>
 				<div class="row">
 					<div class="title span12">
-						<h3 class="pull-left"><?= $order . ' ' . urldecode($search)?> videos</h3>
+						<h1 class="pull-left"><?= $order . ' ' . urldecode($search)?> videos</h1>
 						<div class="sort pull-right dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 								<?=$order?>
@@ -53,7 +54,7 @@ $search = $data['params']['search'];
 								</a-->
 								<img class="border-radius-top flipbook-thumb" src="<?=$video['@default_thumb']?>">
 							</div>
-							<h5><a href="detail.html"><?= $video['title']?></a></h5>
+                                                    <h5><a href="<?='/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id']?>"><?= $video['title']?></a></h5>
 						</div>
 						<div class="box border-radius-bottom">
 							<p>

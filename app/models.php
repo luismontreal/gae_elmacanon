@@ -13,19 +13,25 @@ class RedtubeModel
       $params['data'] = 'redtube.Videos.searchVideos';
       
       $redtubeResponse = $this->api->redTubeApiCall($params);
-      return Helpers::xmlToArray(new SimpleXMLElement($redtubeResponse));
+      return $redtubeResponse;
    }
 
-   public function getVideoById() {
-      return $this->api->allUsers();
+   public function getVideoById($params = array()) {
+      $params['data'] = 'redtube.Videos.getVideoById';
+       
+      $redtubeResponse = $this->api->redTubeApiCall($params);
+      return $redtubeResponse;
    }
 
    public function isVideoActive() {
-      return $this->api->countUser();
+      //nothing
    }
    
-   public function getVideoEmbedCode() {
-      return $this->api->countUser();
+   public function getVideoEmbedCode($params = array()) {
+      $params['data'] = 'redtube.Videos.getVideoEmbedCode';
+      
+      $redtubeResponse = $this->api->redTubeApiCall($params);
+      return $redtubeResponse;
    }
    
    public function getDeletedVideos() {

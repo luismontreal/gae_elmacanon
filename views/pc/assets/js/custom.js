@@ -42,7 +42,16 @@ function parseURL(url) {
                         window.location = '/' + searchTerm + '/1';
                     }
                     event.preventDefault();
-                })
+                });
+                
+                $('#search_bar').keypress(function (e) {
+                    var key = e.which;
+                    if(key == 13)  // the enter key code
+                     {
+                       $('a.btn-search').click();
+                       event.preventDefault();  
+                     }
+                });
                 /***********SEARCH WIDGET ENDS******/
                 /*************FLIPBOOK*************/
                 i = 1;

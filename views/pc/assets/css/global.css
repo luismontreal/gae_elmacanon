@@ -4,6 +4,10 @@ body {
 }
 
 /************ Custom **************/
+h1 {
+    font-size: 18px;
+    line-height: 27px;
+}
 a,.brand .cl-blue{
 	color:#8dd1ff;
 }

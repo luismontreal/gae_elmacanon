@@ -62,12 +62,14 @@ $pimple['Api'] = function ($pimple) {
 // GET routes
 $app->get('/', function () use ($pimple) {
     $page = 1;
-    $search = urlencode('big dick');
+    $search = 'blowjob';
 
     $data['params'] = $params = array(
         'page' => $page,
-        'search' => $search,
+        //'search' => $search,
         'ordering' => 'newest',
+        'tags' => array('Teen'),
+        
     );
 
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
@@ -87,7 +89,7 @@ $app->get('/:search/:page', function ($search, $page) use ($pimple) {
         'search' => $search,
         'ordering' => 'newest',
     );
-
+    $data['seo']['title'] = 'Elmacanon: Best Free Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
     
     $pimple['app']->render('elements/header.php', array('data' => $data));
@@ -105,12 +107,25 @@ $app->get('/:order/:search/:page', function ($order, $search, $page) use ($pimpl
         'search' => $search,
         'ordering' => $order,
     );
-    
+    $data['seo']['title'] = 'Elmacanon: Best Free ' . $search . ' Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
     $data['params'] = $params;
    
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
+    $pimple['app']->render('elements/footer.php', array('data' => $data));
+})->name('order')->conditions(array('order' => 'mostviewed|rating'));;
+
+$app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
+    $data['params'] = $params = array(
+        'video_id' => $video_id,
+    );
+    
+    $data['results'] = $pimple['RedtubeController']->getVideoDetails($params);
+    $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
+    
+    $pimple['app']->render('elements/header.php', array('data' => $data));
+    $pimple['app']->render('video.php', array('data' => $data));
     $pimple['app']->render('elements/footer.php', array('data' => $data));
 })->name('order');
 
