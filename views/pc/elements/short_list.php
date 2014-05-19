@@ -51,7 +51,7 @@ $search = $data['params']['search'];
 								<!--a class="overlay" href="detail.html">
 									<img src="/pc/img/icons/play.png">
 								</a-->
-								<img class="border-radius-top" src="<?=$video['@default_thumb']?>">
+								<img class="border-radius-top flipbook-thumb" src="<?=$video['@default_thumb']?>">
 							</div>
 							<h5><a href="detail.html"><?= $video['title']?></a></h5>
 						</div>
