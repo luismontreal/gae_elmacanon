@@ -2,3 +2,6 @@
 /nbproject/*
 /vendor/autoload.php
 /vendor/composer/*
+/vendor/pimple/*
+/vendor/slim/*
+
