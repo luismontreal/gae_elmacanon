@@ -3,6 +3,8 @@ $page = $data['params']['page'];
 $search = $data['params']['search'];
 $pageSet = ((int) ($page / 10)) * 10;
 $ordering = $data['params']['ordering'] == 'newest' ? '': '/' . $data['params']['ordering'];
+$maxPage = (int) ($data['results']['count'] / 31);
+
 ?>
 
 <div class="navigation pagination pull-right">
@@ -16,6 +18,7 @@ $ordering = $data['params']['ordering'] == 'newest' ? '': '/' . $data['params'][
             $pageToPrint = $pageSet + $i;
            
             if($pageToPrint == 0) continue;
+            if($pageToPrint > $maxPage) break;
             
             if($pageToPrint == $page) {
                 echo '<li class="active"><a href="#">' . $pageToPrint . '</a></li>';
@@ -23,8 +26,9 @@ $ordering = $data['params']['ordering'] == 'newest' ? '': '/' . $data['params'][
                 echo '<li><a href="' . $ordering . '/'. $search .'/'. $pageToPrint . '">' . $pageToPrint . '</a></li>';
             }
         }
-        
-        echo '<li><a href="' . $ordering . '/'. $search .'/'. ($pageToPrint + 1) . '">→</a></li>';
+        if($pageToPrint < $maxPage) {
+            echo '<li><a href="' . $ordering . '/'. $search .'/'. ($pageToPrint + 1) . '">→</a></li>';
+        }
         
         ?>
     </ul>
