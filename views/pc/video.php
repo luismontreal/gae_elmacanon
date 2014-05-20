@@ -6,12 +6,11 @@ foreach($data['results']['video_details']['video']['tags']['tag'] as $tag) {
 $tags_text = rtrim($tags_text,', ');
 
 $pornstar_text = '';
-if(is_array($data['results']['video_details']['video']['stars'])) {
-    foreach($data['results']['video_details']['video']['stars'] as $star) { 
-        $pornstar_text .= '<a href="/' . str_replace(' ', '+', trim($star)) . '/1">' . $star . '</a>, ';
-    }
-    $pornstar_text = rtrim($pornstar_text,', ');
+foreach($data['results']['video_details']['video']['stars']['star'] as $star) { 
+    $pornstar_text .= '<a href="/' . str_replace(' ', '+', trim($star[0])) . '/1">' . $star . '</a>, ';
 }
+$pornstar_text = rtrim($pornstar_text,', ');
+
 ?>
 <div class="main">
 	<div class="container">

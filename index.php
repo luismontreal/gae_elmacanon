@@ -1,4 +1,5 @@
 <?php
+$_SERVER['SERVER_PORT'] = 80;
 require 'vendor/autoload.php';
 require 'vendor/kint/Kint.class.php';
 require 'app/controllers.php';
@@ -28,6 +29,7 @@ require 'app/helpers.php';
 $app = new \Slim\Slim(array(
     'debug' => true,
     'templates.path' => 'views/pc',
+    'log.enabled' => false
 ));
 
 /* 
@@ -82,7 +84,7 @@ $app->get('/:search/:page', function ($search, $page) use ($pimple) {
     if(!is_numeric($page) || $page < 1) {
         $page = 1;
     }
-
+    
     $data['params'] = $params = array(
         'page' => $page,
         'search' => $search,
@@ -125,10 +127,28 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     );
     
     $data['results'] = $pimple['RedtubeController']->getVideoDetails($params);
-    
+   
     if(empty($data['results'])) {
         $pimple['app']->pass();
     }
+    /*Redtube API has different format if returning only 1 result or many*/
+    if(isset($data['results']['video_details']['video']['stars']['star'])) {
+        if(!is_array($data['results']['video_details']['video']['stars']['star'])) {
+            settype($data['results']['video_details']['video']['stars']['star'], 'array');
+        }
+    } else {
+        $data['results']['video_details']['video']['stars']['star'] = array();
+    }
+    
+    /*Redtube API has different format if returning only 1 result or many*/
+    if(isset($data['results']['video_details']['video']['tags']['tag'])) {
+        if(!is_array($data['results']['video_details']['video']['tags']['tag'])) {
+            settype($data['results']['video_details']['video']['tags']['tag'], 'array');
+        }
+    } else {
+        $data['results']['video_details']['video']['tags']['tag'] = array();
+    }
+    
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
     
     $pimple['app']->render('elements/header.php', array('data' => $data));
