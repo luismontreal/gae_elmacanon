@@ -11,9 +11,6 @@ class Api {
    public function redTubeApiCall($params = array()) {
 	$query_string = '?';
         $params['output'] = 'xml';
-        if(isset($params['search'])) {
-            $params['search'] = str_replace(' ', '+', $params['search']);
-        }
         ksort($params);
        
         foreach($params as $k=>$v){

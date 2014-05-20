@@ -87,10 +87,10 @@ $app->get('/:search/:page', function ($search, $page) use ($pimple) {
     
     $data['params'] = $params = array(
         'page' => $page,
-        'search' => $search,
+        'search' => str_replace(' ', '+', $search),
         'ordering' => 'newest',
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free ' . $search . ' Porn Videos';
+    $data['seo']['title'] = 'Elmacanon: Best Free ' . str_replace('+', ' ', $search) . ' Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
     if($data['results']['count'] == 1) {
         $data['results']['videos'] = array($data['results']['videos']);
@@ -107,10 +107,10 @@ $app->get('/:order/:search/:page', function ($order, $search, $page) use ($pimpl
     
     $data['params'] = $params = array(
         'page' => $page,
-        'search' => $search,
+        'search' => str_replace(' ', '+', $search),
         'ordering' => $order,
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free ' . urldecode($search) . ' Porn Videos';
+    $data['seo']['title'] = 'Elmacanon: Best Free ' . str_replace('+', ' ', $search) . ' Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
     if($data['results']['count'] == 1) {
         $data['results']['videos'] = array($data['results']['videos']);
