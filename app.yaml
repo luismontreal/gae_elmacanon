@@ -11,6 +11,11 @@ handlers:
 #  application_readable: true
 
 #PC Assets
+
+- url: /favicon.ico
+  static_files: app/favicon.ico
+  upload: app/favicon.ico
+  
 - url: /pc/css
   static_dir: views/pc/assets/css
 
@@ -19,7 +24,7 @@ handlers:
   
 - url: /pc/img
   static_dir: views/pc/assets/img
-
+  
 # Serve php scripts.
 - url: /.*
   script: index.php
