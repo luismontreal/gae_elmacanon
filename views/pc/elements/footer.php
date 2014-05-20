@@ -13,12 +13,12 @@
 			<div class="span2">
 				<ul class="nav nav-list">
 					<li class="nav-header">Contact</li>
-					<li><a href="#">elmacanon.com@gmail.com</a></li>
-					<li><a href="#">About</a></li>
-					<li>84.903.197.895</li>
+					<li>luis@elmacanon.com</li>
+					<!--li><a href="#">About</a></li>
+					<li>84.903.197.895</li-->
 				</ul>
 			</div>
-			<div class="span2">
+			<!--div class="span2">
 				<ul class="nav nav-list">
 					<li class="nav-header">Blog</li>
 					<li><a href="#">Regulation</a></li>
@@ -32,7 +32,7 @@
 					<li><a href="#"><i class="facebook"></i>Facebook</a></li>
 					<li><a href="#"><i class="dd"></i>Forum</a></li>
 				</ul>
-			</div>
+			</div-->
 		</div>
 	</div>
 </div>

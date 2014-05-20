@@ -37,6 +37,7 @@ function parseURL(url) {
                 $('a.btn-search').bind('click', function(event){
                     searchTerm = encodeURIComponent($.trim($("#search_bar").val()));
                     searchTerm = searchTerm.replace("%20", "+");
+                    searchTerm = searchTerm.toLowerCase();
 
                     if(searchTerm != '') {
                         window.location = '/' + searchTerm + '/1';

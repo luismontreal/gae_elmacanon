@@ -36,8 +36,9 @@
 			<div class="nav-collapse">
 				<ul class="nav pull-left">
                                     <li><a href="/">Home</a></li>
-                                    <!--li><a href="blog.html">Blog</a></li>
-                                    <li><a href="element.html">Element</a></li>
+                                    <!--li><a href="/categories">Categories</a></li>
+                                    <li><a href="/tags">Tags</a></li>
+                                    <!--li><a href="element.html">Element</a></li>
                                     <li><a href="detail.html">Detail</a></li>
                                     <li><a href="pricing-plans.html">Pricing Plans</a></li>
                                                     <li><a href="grid-layout.html">Grid Layout</a></li>

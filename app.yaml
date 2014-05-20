@@ -16,6 +16,10 @@ handlers:
   static_files: app/favicon.ico
   upload: app/favicon.ico
   
+- url: /robots.txt
+  static_files: app/robots.txt
+  upload: app/robots.txt
+  
 - url: /pc/css
   static_dir: views/pc/assets/css
 
