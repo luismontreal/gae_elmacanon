@@ -46,7 +46,7 @@ if(is_array($data['results']['video_details']['video']['stars'])) {
 			
                         
                         
-			<div class="sidebar-content span3">
+			<!--div class="sidebar-content span3">
 				<div class="row">
 					<div class="box-wrapper span3">
 						<div class="row">
@@ -168,7 +168,7 @@ if(is_array($data['results']['video_details']['video']['stars'])) {
 					</div><!-- end thumbnails-style1 -->
 				</div><!-- row -->
 
-			</div><!-- end sidebar-content -->
+			</div--><!-- end sidebar-content -->
 		</div><!-- row -->
 	</div><!-- end container -->
 </div><!-- end main -->

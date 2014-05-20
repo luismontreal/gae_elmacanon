@@ -25,6 +25,7 @@ class RedtubeController extends Controller
       if(isset($results['error'])) {
           $error = $results['error'];
           $params['search'] = 'big+dick';
+          $params['page'] = 1;
           $results = $this->model->searchVideo($params);
       }
       
@@ -69,16 +70,14 @@ class RedtubeController extends Controller
    public function getVideoDetails($params = array()) {
        //getting embed code
       $results = $this->getVideoEmbedCode($params);
-      $error = '';
       
-      if(isset($results['error'])) {
-          $error = $results['error'];
+      if(!empty($results['error'])) {
+          return FALSE;
       }
  
       $response = array(
          'coded_embed' => $results['coded_embed'],
          'decoded_embed' => $results['decoded_embed'],
-         'error' => $error,
       );
       //getting additional info
       $results = $this->model->getVideoById($params);

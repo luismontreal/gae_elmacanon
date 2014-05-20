@@ -62,17 +62,16 @@ $pimple['Api'] = function ($pimple) {
 // GET routes
 $app->get('/', function () use ($pimple) {
     $page = 1;
-    $search = 'blowjob';
+    $search = 'big+dick';
 
     $data['params'] = $params = array(
         'page' => $page,
-        //'search' => $search,
+        'search' => $search,
         'ordering' => 'newest',
-        'tags' => array('Teen'),
-        
     );
 
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
+    $data['seo']['title'] = 'Elmacanon: Best Free Porn Videos';
     
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
@@ -89,9 +88,11 @@ $app->get('/:search/:page', function ($search, $page) use ($pimple) {
         'search' => $search,
         'ordering' => 'newest',
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free Porn Videos';
+    $data['seo']['title'] = 'Elmacanon: Best Free ' . $search . ' Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
-    
+    if($data['results']['count'] == 1) {
+        $data['results']['videos'] = array($data['results']['videos']);
+    }
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
     $pimple['app']->render('elements/footer.php', array('data' => $data));
@@ -107,9 +108,11 @@ $app->get('/:order/:search/:page', function ($order, $search, $page) use ($pimpl
         'search' => $search,
         'ordering' => $order,
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free ' . $search . ' Porn Videos';
+    $data['seo']['title'] = 'Elmacanon: Best Free ' . urldecode($search) . ' Porn Videos';
     $data['results'] = $pimple['RedtubeController']->searchVideo($params);
-    $data['params'] = $params;
+    if($data['results']['count'] == 1) {
+        $data['results']['videos'] = array($data['results']['videos']);
+    }
    
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
@@ -122,6 +125,10 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     );
     
     $data['results'] = $pimple['RedtubeController']->getVideoDetails($params);
+    
+    if(empty($data['results'])) {
+        $pimple['app']->pass();
+    }
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
     
     $pimple['app']->render('elements/header.php', array('data' => $data));

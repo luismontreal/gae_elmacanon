@@ -3,11 +3,11 @@
 		<div class="row">
 			<div class="span6 logo-vt">
 				<a class="brand" href="#">
-					<span>Choose</span><span class="cl-blue">Logo</span>
+					<span>El</span><span class="cl-blue">macanon</span>
 				</a>
 				<span class="coppy_right">
-					<p>Lorem ipsum dolor sit </p>
-					<p>@2012 All Rights Reserved.</p>
+					<p>Elmacanon.com </p>
+					<p>@2014 All Rights Reserved.</p>
 				</span>
 			</div>
 			<div class="span2">

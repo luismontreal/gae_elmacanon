@@ -52,7 +52,9 @@ $search = $data['params']['search'];
 								<!--a class="overlay" href="detail.html">
 									<img src="/pc/img/icons/play.png">
 								</a-->
-								<img class="border-radius-top flipbook-thumb" src="<?=$video['@default_thumb']?>">
+								<a href="<?='/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id']?>">
+                                                                    <img class="border-radius-top flipbook-thumb" src="<?=$video['@default_thumb']?>">
+                                                                </a>
 							</div>
                                                     <h5><a href="<?='/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id']?>"><?= $video['title']?></a></h5>
 						</div>
