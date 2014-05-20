@@ -13,7 +13,7 @@
 			<div class="span2">
 				<ul class="nav nav-list">
 					<li class="nav-header">Contact</li>
-					<li><a href="#">Support</a></li>
+					<li><a href="#">elmacanon@gmail.com</a></li>
 					<li><a href="#">About</a></li>
 					<li>84.903.197.895</li>
 				</ul>
