@@ -12,7 +12,11 @@
         <script src="/pc/js/bootstrap.min.js"></script>
         <script src="/pc/js/custom.js"></script>
 	<!-- end Boots_from -->
-        <!-- Google analytics -->
+        
+</head>
+
+<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
+<!-- Google analytics -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -22,11 +26,7 @@
             ga('create', 'UA-51159807-1', 'elmacanon.com');
             ga('send', 'pageview');
          </script>
-        <!-- End google analytics -->
-</head>
-
-<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
-
+<!-- End google analytics -->
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
