@@ -62,64 +62,38 @@ $pimple['Api'] = function ($pimple) {
  */
 
 // GET routes
-$app->get('/', function () use ($pimple) {
-    $page = 1;
-    $search = 'big+dick';
-
-    $data['params'] = $params = array(
-        'page' => $page,
-        'search' => $search,
-        'ordering' => 'newest',
-    );
-
-    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
-    $data['seo']['title'] = 'Elmacanon: Best Free Porn Videos';
-    
-    $pimple['app']->render('elements/header.php', array('data' => $data));
-    $pimple['app']->render('home.php', array('data' => $data));
-    $pimple['app']->render('elements/footer.php', array('data' => $data));
-});
-
-$app->get('/:search/:page', function ($search, $page) use ($pimple) {
-    if(!is_numeric($page) || $page < 1) {
-        $page = 1;
+//Straight route
+$app->get('/(:search)', function ($search = 'big dick') use ($pimple) {
+    //if search term is gay or straight then go to next route
+    if(in_array($search, array('gay','shemale'))) {
+        $pimple['app']->pass();
     }
-    
-    $data['params'] = $params = array(
-        'page' => $page,
-        'search' => str_replace(' ', '+', $search),
-        'ordering' => 'newest',
+    $options = array(
+        'page' => $pimple['app']->request->get('page'),
+        'order' => $pimple['app']->request->get('order'),
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free ' . str_replace('+', ' ', $search) . ' Porn Videos';
-    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
-    if($data['results']['count'] == 1) {
-        $data['results']['videos'] = array($data['results']['videos']);
-    }
+    
+    $data = $pimple['RedtubeController']->getSearchPage($search, null, $options);
+    
+    //templates
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
     $pimple['app']->render('elements/footer.php', array('data' => $data));
 })->name('search');
-
-$app->get('/:order/:search/:page', function ($order, $search, $page) use ($pimple) {
-    if(!is_numeric($page) || $page < 1) {
-        $page = 1;
-    }
-    
-    $data['params'] = $params = array(
-        'page' => $page,
-        'search' => str_replace(' ', '+', $search),
-        'ordering' => $order,
+//Gay/Shemale routes
+$app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick') use ($pimple) {
+    $options = array(
+        'page' => $pimple['app']->request->get('page'),
+        'order' => $pimple['app']->request->get('order'),
     );
-    $data['seo']['title'] = 'Elmacanon: Best Free ' . str_replace('+', ' ', $search) . ' Porn Videos';
-    $data['results'] = $pimple['RedtubeController']->searchVideo($params);
-    if($data['results']['count'] == 1) {
-        $data['results']['videos'] = array($data['results']['videos']);
-    }
-   
+    
+    $data = $pimple['RedtubeController']->getSearchPage($search, $orientation, $options);
+    
+    //templates
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('home.php', array('data' => $data));
     $pimple['app']->render('elements/footer.php', array('data' => $data));
-})->name('order')->conditions(array('order' => 'mostviewed|rating'));;
+})->name('search_orientation')->conditions(array('orientation' => 'gay|shemale'));
 
 $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     $data['params'] = $params = array(

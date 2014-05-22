@@ -2,6 +2,12 @@
 <html>
 <head>
     <title><?=$data['seo']['title']?></title>
+        <?if($data['seo']['index']) : ?>
+        <meta name="robots" content="index, follow, all" />
+        <?else:?>
+        <meta name="robots" content="noindex, nofollow" />
+        <?endif;?>
+        <meta http-equiv="Content-Language" content="en" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
 	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css">

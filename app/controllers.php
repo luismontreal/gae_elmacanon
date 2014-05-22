@@ -17,6 +17,49 @@ class RedtubeController extends Controller
    public function init(Pimple $di) {
       $this->model = $di['RedtubeModel'];
    }
+   
+   public function getSearchPage ($search, $orientation = '', $options = array()) {
+       //query strings
+        if(!isset($options['page']) || !is_numeric($options['page']) || $options['page'] < 1) {
+            $page = 1;
+        } else {
+            $page = $options['page'];
+        }
+        
+        if(empty($options['order']) || !in_array($options['order'], array('rating', 'mostviewed'))) {
+            $order = 'newest';
+        } else {
+            $order = $options['order'];
+        }
+
+        //params
+        $data['params'] = array(
+            'page' => $page,
+            'search' => str_replace(' ', '+', $search),
+            'ordering' => $order,
+        );
+        //for gay and shemale
+        if(in_array($orientation,array('shemale','gay'))) {
+             $data['params']['category'] = $orientation;
+        }
+
+        //SEO data
+        $data['seo']['title'] = 'Elmacanon: Best Free '. $orientation . ' ' . str_replace('+', ' ', $search) . ' Porn Videos';
+        if($page == 1 && $order == 'newest') {
+            $data['seo']['index'] = true;
+        } else {
+            $data['seo']['index'] = false;
+        }
+
+        //getting video results
+        $data['results'] = $this->searchVideo($data['params']);
+        //fixing format when only 1 result
+        if($data['results']['count'] == 1) {
+            $data['results']['videos'] = array($data['results']['videos']);
+        }
+        
+        return $data;
+   }
 
    public function searchVideo($params = array()) {
       $results = $this->model->searchVideo($params);

@@ -40,7 +40,7 @@ function parseURL(url) {
                     searchTerm = searchTerm.toLowerCase();
 
                     if(searchTerm != '') {
-                        window.location = '/' + searchTerm + '/1';
+                        window.location = '/' + searchTerm ;
                     }
                     event.preventDefault();
                 });

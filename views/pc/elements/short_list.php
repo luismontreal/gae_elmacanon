@@ -13,6 +13,7 @@ switch ($data['params']['ordering']) {
 }
 
 $search = $data['params']['search'];
+$orientation = isset($data['params']['category']) ? '/' . $data['params']['category'] : '';
 ?>
 <div class="box-wrapper  span12">
 				<div class="row">
@@ -22,7 +23,7 @@ $search = $data['params']['search'];
 				</div>
 				<div class="row">
 					<div class="title span12">
-						<h1 class="pull-left"><?= $order . ' ' . urldecode($search)?> videos</h1>
+						<h1 class="pull-left"><?= $order . ' ' . ltrim($orientation, '/') . ' ' . urldecode($search)?> videos</h1>
 						<div class="sort pull-right dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 								<?=$order?>
@@ -30,15 +31,15 @@ $search = $data['params']['search'];
 							</a>
 							<ul class="dropdown-menu">
                                                             <? if ($data['params']['ordering'] != 'newest') : ?>
-								<li><a href="/<?= $search . '/1'?>"><i class="icon-list"></i>Newest</a></li>
+								<li><a href="<?= $orientation . '/' . $search?>"><i class="icon-list"></i>Newest</a></li>
                                                             <? endif; 
                                                                if ($data['params']['ordering'] != 'rating') :                                                           
                                                             ?>
-                                                                <li><a href="/rating/<?= $search . '/1'?>"><i class="icon-tag"></i>Best rated</a></li>
+                                                                <li><a href="<?= $orientation . '/' . $search?>?order=rating"><i class="icon-tag"></i>Best rated</a></li>
                                                             <? endif; 
                                                                if ($data['params']['ordering'] != 'mostviewed') :                                                           
                                                             ?>    
-								<li><a href="/mostviewed/<?= $search . '/1'?>"><i class="icon-eye-open"></i>Most Viewed</a></li>
+								<li><a href="<?= $orientation . '/' . $search?>?order=mostviewed"><i class="icon-eye-open"></i>Most Viewed</a></li>
                                                             <? endif; ?>
 							</ul>
 						</div>

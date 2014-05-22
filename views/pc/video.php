@@ -1,13 +1,13 @@
 <?php
 $tags_text = '';
 foreach($data['results']['video_details']['video']['tags']['tag'] as $tag) { 
-    $tags_text .= '<a href="/' . str_replace(' ', '+', trim($tag)) . '/1">' . $tag . '</a>, ';
+    $tags_text .= '<a href="/' . str_replace(' ', '+', trim($tag)) . '">' . $tag . '</a>, ';
 }
 $tags_text = strtolower(rtrim($tags_text,', '));
 
 $pornstar_text = '';
 foreach($data['results']['video_details']['video']['stars']['star'] as $star) { 
-    $pornstar_text .= '<a href="/' . str_replace(' ', '+', trim($star)) . '/1">' . $star . '</a>, ';
+    $pornstar_text .= '<a href="/' . str_replace(' ', '+', trim($star)) . '">' . $star . '</a>, ';
 }
 $pornstar_text = strtolower(rtrim($pornstar_text,', '));
 
