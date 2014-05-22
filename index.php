@@ -124,6 +124,7 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     }
     
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
+    $data['seo']['index'] = true;
     
     $pimple['app']->render('elements/header.php', array('data' => $data));
     $pimple['app']->render('video.php', array('data' => $data));
