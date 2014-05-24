@@ -1,7 +1,14 @@
 <?php
+//orientation, null is assumed straight
+if(empty($data['params']['category']) || $data['params']['category'] == 'straight')
+    $orientation = '/';
+else {
+    $orientation = '/' . $data['params']['category'] .'/';
+}
+
 $tags_text = '';
 foreach($data['results']['video_details']['video']['tags']['tag'] as $tag) { 
-    $tags_text .= '<a href="/' . str_replace(' ', '+', trim($tag)) . '">' . $tag . '</a>, ';
+    $tags_text .= '<a href="' . $orientation . str_replace(' ', '+', trim($tag)) . '">' . $tag . '</a>, ';
 }
 $tags_text = strtolower(rtrim($tags_text,', '));
 

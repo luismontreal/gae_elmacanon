@@ -27,7 +27,7 @@ require 'app/helpers.php';
  * of setting names and values into the application constructor.
  */
 $app = new \Slim\Slim(array(
-    'debug' => false,
+    'debug' => true,
     'templates.path' => 'views/pc',
     'log.enabled' => false,
     'cookies.lifetime' => time() + 31536000, //in 1 year after accesing the site

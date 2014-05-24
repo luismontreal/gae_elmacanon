@@ -43,8 +43,8 @@
 			<div class="tabs-left">
 				<ul class="nav pull-left nav-tabs">
                                     <li <?= empty($data['params']['category']) || $data['params']['category'] == 'straight'? 'class="active"' : '';?>><a href="/?straight=1">Straight</a></li>
-                                    <li <?= $data['params']['category'] == 'gay' ? 'class="active"' : '';?>><a href="/gay">Gay</a></li>
-                                    <li <?= $data['params']['category'] == 'shemale' ? 'class="active"' : '';?>><a href="/shemale">Shemale</a></li>
+                                    <li <?= !empty($data['params']['category']) && $data['params']['category'] == 'gay' ? 'class="active"' : '';?>><a href="/gay">Gay</a></li>
+                                    <li <?= !empty($data['params']['category']) && $data['params']['category'] == 'shemale' ? 'class="active"' : '';?>><a href="/shemale">Shemale</a></li>
                                     <!--li><a href="element.html">Element</a></li>
                                     <li><a href="detail.html">Detail</a></li>
                                     <li><a href="pricing-plans.html">Pricing Plans</a></li>
