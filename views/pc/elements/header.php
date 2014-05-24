@@ -5,11 +5,12 @@
         <?if($data['seo']['index']) : ?>
         <meta name="robots" content="index, follow, all" />
         <?else:?>
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="noindex, follow" />
         <?endif;?>
-        <meta http-equiv="Content-Language" content="en" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="google-translate-customization" content="70cb57e407230552-e8217eb3457c16cd-g2436a6e02f0b0e29-11">
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
+        <meta http-equiv="Content-Language" content="en" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
 	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="/pc/css/global.css" />
 	<link type="text/css" rel="stylesheet" href="/pc/css/color-button.css" />
@@ -39,11 +40,11 @@
 			<a class="brand" href="/">
 				<span>El</span><span class="cl-blue">macanon</span>
 			</a>
-			<div class="nav-collapse">
-				<ul class="nav pull-left">
-                                    <li><a href="/">Home</a></li>
-                                    <!--li><a href="/categories">Categories</a></li>
-                                    <li><a href="/tags">Tags</a></li>
+			<div class="tabs-left">
+				<ul class="nav pull-left nav-tabs">
+                                    <li <?= empty($data['params']['category']) || $data['params']['category'] == 'straight'? 'class="active"' : '';?>><a href="/?straight=1">Straight</a></li>
+                                    <li <?= $data['params']['category'] == 'gay' ? 'class="active"' : '';?>><a href="/gay">Gay</a></li>
+                                    <li <?= $data['params']['category'] == 'shemale' ? 'class="active"' : '';?>><a href="/shemale">Shemale</a></li>
                                     <!--li><a href="element.html">Element</a></li>
                                     <li><a href="detail.html">Detail</a></li>
                                     <li><a href="pricing-plans.html">Pricing Plans</a></li>
@@ -74,6 +75,15 @@
                                                             </ul>
                                     </li-->
                             </ul>
+                            <!--Google Translate -->
+                            <div id="google_translate_element"></div>
+                            <script type="text/javascript">
+                                function googleTranslateElementInit() {
+                                  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,pt', gaTrack: true, gaId: 'UA-51160359-1'}, 'google_translate_element');
+                                }
+                            </script>
+                            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                            <!--Ends Google Translate -->
 			</div>
 		</div>
 	</div>

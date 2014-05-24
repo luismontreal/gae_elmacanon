@@ -29,18 +29,26 @@ function parseURL(url) {
 (function($){
 		
 	$(document).ready(function(){
-
 		$('input.box-text').bind('focus blur', function(){
 			$(this).toggleClass('focus');
 		});
                 /*********SEARCH WIDGET************/
                 $('a.btn-search').bind('click', function(event){
+                    current_url = parseURL(window.location.href);
+                    if(current_url.path.indexOf("/gay") === 0) {
+                        orientation = '/gay';
+                    } else if(current_url.path.indexOf("/shemale") === 0){
+                        orientation = '/shemale';
+                    } else {
+                        orientation = '';
+                    }
+                    
                     searchTerm = encodeURIComponent($.trim($("#search_bar").val()));
                     searchTerm = searchTerm.replace("%20", "+");
                     searchTerm = searchTerm.toLowerCase();
 
                     if(searchTerm != '') {
-                        window.location = '/' + searchTerm ;
+                        window.location = orientation + '/' + searchTerm ;
                     }
                     event.preventDefault();
                 });

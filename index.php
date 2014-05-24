@@ -27,9 +27,10 @@ require 'app/helpers.php';
  * of setting names and values into the application constructor.
  */
 $app = new \Slim\Slim(array(
-    'debug' => true,
+    'debug' => false,
     'templates.path' => 'views/pc',
-    'log.enabled' => false
+    'log.enabled' => false,
+    'cookies.lifetime' => time() + 31536000, //in 1 year after accesing the site
 ));
 
 /* 
@@ -68,6 +69,24 @@ $app->get('/(:search)', function ($search = 'big dick') use ($pimple) {
     if(in_array($search, array('gay','shemale'))) {
         $pimple['app']->pass();
     }
+    
+    //if user's cookie is gay/shemale redirect to that url
+    $orientation = $pimple['app']->getCookie('orientation');
+    if(in_array($orientation, array('gay', 'shemale'))) {
+        $requestsStraight = $pimple['app']->request->get('straight');
+        
+        if(!empty($requestsStraight)) {
+            $pimple['app']>setCookie('orientation', 'straight');
+            $pimple['app']->redirect('/');
+        } else {
+            $pimple['app']->redirect('/' . $orientation);
+        }
+    }
+    
+    if($orientation != 'straight') {
+        $pimple['app']>setCookie('orientation', 'straight');
+    }
+    
     $options = array(
         'page' => $pimple['app']->request->get('page'),
         'order' => $pimple['app']->request->get('order'),
@@ -87,6 +106,8 @@ $app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick
         'order' => $pimple['app']->request->get('order'),
     );
     
+    $pimple['app']>setCookie('orientation', $orientation);
+            
     $data = $pimple['RedtubeController']->getSearchPage($search, $orientation, $options);
     
     //templates
@@ -99,7 +120,8 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     $data['params'] = $params = array(
         'video_id' => $video_id,
     );
-    
+    //get last known orientation with the cookie
+    $data['params']['category'] = $pimple['app']->getCookie('orientation');
     $data['results'] = $pimple['RedtubeController']->getVideoDetails($params);
    
     if(empty($data['results'])) {
