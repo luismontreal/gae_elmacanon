@@ -13,7 +13,7 @@
 			<div class="span2">
 				<ul class="nav nav-list">
 					<li class="nav-header">Contact</li>
-					<li>luis@elmacanon.com</li>
+					<li>info@elmacanon.com</li>
 					<!--li><a href="#">About</a></li>
 					<li>84.903.197.895</li-->
 				</ul>
