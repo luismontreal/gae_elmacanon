@@ -2,6 +2,7 @@
 <html>
 <head>
     <title><?=$data['seo']['title']?></title>
+        <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA" />
         <?if($data['seo']['index']) : ?>
         <meta name="robots" content="index, follow, all" />
         <?else:?>
@@ -11,13 +12,13 @@
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
         <meta http-equiv="Content-Language" content="en" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
-	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css">
-	<link type="text/css" rel="stylesheet" href="/pc/css/global.css" />
-	<link type="text/css" rel="stylesheet" href="/pc/css/color-button.css" />
+	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
+	<link type="text/css" rel="stylesheet" href="/pc/css/global.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
+	<link type="text/css" rel="stylesheet" href="/pc/css/color-button.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
 	<!-- js Boots_from -->
-	<script src="/pc/js/jquery.js"></script>
-        <script src="/pc/js/bootstrap.min.js"></script>
-        <script src="/pc/js/custom.js"></script>
+	<script src="/pc/js/jquery.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
+        <script src="/pc/js/bootstrap.min.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
+        <script src="/pc/js/custom.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
 	<!-- end Boots_from -->
         <!-- Google analytics -->
         <script>
@@ -79,7 +80,7 @@
                             <div id="google_translate_element"></div>
                             <script type="text/javascript">
                                 function googleTranslateElementInit() {
-                                  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,pt', gaTrack: true, gaId: 'UA-51160359-1'}, 'google_translate_element');
+                                  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'de,es,it,nl,pt,zh-CN', gaTrack: true, gaId: 'UA-51160359-1'}, 'google_translate_element');
                                 }
                             </script>
                             <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

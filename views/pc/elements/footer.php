@@ -1,7 +1,7 @@
 <div class="footer">
     <div class="container">
 		<div class="row">
-			<div class="span6 logo-vt">
+			<div class="span4 logo-vt">
 				<a class="brand" href="#">
 					<span>El</span><span class="cl-blue">macanon</span>
 				</a>
@@ -10,7 +10,10 @@
 					<p>@2014 All Rights Reserved.</p>
 				</span>
 			</div>
-			<div class="span2">
+                        <div class="span4">
+                            <a href="http://www.rtalabel.org/" target="_blank"><img src='/pc/img/RTA_blue.gif' /></a>
+			</div>
+			<div class="span4">
 				<ul class="nav nav-list">
 					<li class="nav-header">Contact</li>
 					<li>info@elmacanon.com</li>
