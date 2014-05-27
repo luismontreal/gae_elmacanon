@@ -1,7 +1,5 @@
 {
-   "require": {
-      "slim/slim": "2.*",
-      "pimple/pimple": "*"
-   },
-   "minimum-stability": "dev"
+    "require": {
+        "slim/slim": "2.*"
+    }
 }

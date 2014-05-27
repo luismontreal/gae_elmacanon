@@ -5,7 +5,7 @@ class Api {
    public $call = '';
    public $memcache_prefix = 'api:redtube:';
    
-   public function __construct(Pimple $di) {
+   public function __construct($app) {
    }
 
    public function redTubeApiCall($params = array()) {

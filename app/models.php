@@ -4,9 +4,9 @@ class RedtubeModel
    protected $api;
    protected $app;
 
-   public function __construct(Pimple $di) {
-      $this->api = $di['Api'];
-      $this->app = $di['app'];
+   public function __construct($app) {
+      $this->api = $app->Api;
+      $this->app = $app;
    }
 
    public function searchVideo($params = array()) {

@@ -4,18 +4,18 @@ abstract class Controller
    protected $app;
    protected $model;
 
-   public function __construct(Pimple $di) {
-      $this->app = $di['app'];
-      $this->init($di);
+   public function __construct($app) {
+      $this->app = $app;
+      $this->init($app);
    }
 
-   public abstract function init(Pimple $di);
+   public abstract function init($di);
 }
 
 class RedtubeController extends Controller
 {
-   public function init(Pimple $di) {
-      $this->model = $di['RedtubeModel'];
+   public function init($app) {
+      $this->model = $app->RedtubeModel;
    }
    
    public function getSearchPage ($search, $orientation = '', $options = array()) {

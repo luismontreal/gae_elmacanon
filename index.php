@@ -38,21 +38,17 @@ $app = new \Slim\Slim(array(
  *  
  */
 
-$pimple = new Pimple();
-$pimple['app'] = $app;
-
-$pimple['RedtubeController'] = function ($pimple) {    
-    return new RedtubeController($pimple);
+$app->RedtubeController = function ($app) {    
+    return new RedtubeController($app);
 };
 
-$pimple['RedtubeModel'] = function ($pimple) {
-    return new RedtubeModel($pimple);
+$app->RedtubeModel = function ($app) {
+    return new RedtubeModel($app);
 };
 
-$pimple['Api'] = function ($pimple) {
-    return new Api($pimple);
+$app->Api = function ($app) {
+    return new Api($app);
 };
-
 /**
  * Step 3: Define the Slim application routes
  *
@@ -64,68 +60,68 @@ $pimple['Api'] = function ($pimple) {
 
 // GET routes
 //Straight route
-$app->get('/(:search)', function ($search = 'big dick') use ($pimple) {
+$app->get('/(:search)', function ($search = 'big dick') use ($app) {
     //if search term is gay or straight then go to next route
     if(in_array($search, array('gay','shemale'))) {
-        $pimple['app']->pass();
+        $app->pass();
     }
     
     //if user's cookie is gay/shemale redirect to that url
-    $orientation = $pimple['app']->getCookie('orientation');
+    $orientation = $app->getCookie('orientation');
     if(in_array($orientation, array('gay', 'shemale'))) {
-        $requestsStraight = $pimple['app']->request->get('straight');
+        $requestsStraight = $app->request->get('straight');
         
         if(!empty($requestsStraight)) {
-            $pimple['app']>setCookie('orientation', 'straight');
-            $pimple['app']->redirect('/');
+            $app->setCookie('orientation', 'straight');
+            $app->redirect('/');
         } else {
-            $pimple['app']->redirect('/' . $orientation);
+            $app->redirect('/' . $orientation);
         }
     }
     
     if($orientation != 'straight') {
-        $pimple['app']>setCookie('orientation', 'straight');
+        $app->setCookie('orientation', 'straight');
     }
     
     $options = array(
-        'page' => $pimple['app']->request->get('page'),
-        'order' => $pimple['app']->request->get('order'),
+        'page' => $app->request->get('page'),
+        'order' => $app->request->get('order'),
     );
     
-    $data = $pimple['RedtubeController']->getSearchPage($search, null, $options);
+    $data = $app->RedtubeController->getSearchPage($search, null, $options);
     
     //templates
-    $pimple['app']->render('elements/header.php', array('data' => $data));
-    $pimple['app']->render('home.php', array('data' => $data));
-    $pimple['app']->render('elements/footer.php', array('data' => $data));
+    $app->render('elements/header.php', array('data' => $data));
+    $app->render('home.php', array('data' => $data));
+    $app->render('elements/footer.php', array('data' => $data));
 })->name('search');
 //Gay/Shemale routes
-$app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick') use ($pimple) {
+$app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick') use ($app) {
     $options = array(
-        'page' => $pimple['app']->request->get('page'),
-        'order' => $pimple['app']->request->get('order'),
+        'page' => $app->request->get('page'),
+        'order' => $app->request->get('order'),
     );
     
-    $pimple['app']>setCookie('orientation', $orientation);
+    $app>setCookie('orientation', $orientation);
             
-    $data = $pimple['RedtubeController']->getSearchPage($search, $orientation, $options);
+    $data = $app->RedtubeController->getSearchPage($search, $orientation, $options);
     
     //templates
-    $pimple['app']->render('elements/header.php', array('data' => $data));
-    $pimple['app']->render('home.php', array('data' => $data));
-    $pimple['app']->render('elements/footer.php', array('data' => $data));
+    $app->render('elements/header.php', array('data' => $data));
+    $app->render('home.php', array('data' => $data));
+    $app->render('elements/footer.php', array('data' => $data));
 })->name('search_orientation')->conditions(array('orientation' => 'gay|shemale'));
 
-$app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
+$app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($app) {
     $data['params'] = $params = array(
         'video_id' => $video_id,
     );
     //get last known orientation with the cookie
-    $data['params']['category'] = $pimple['app']->getCookie('orientation');
-    $data['results'] = $pimple['RedtubeController']->getVideoDetails($params);
+    $data['params']['category'] = $app->getCookie('orientation');
+    $data['results'] = $app->RedtubeController->getVideoDetails($params);
    
     if(empty($data['results'])) {
-        $pimple['app']->pass();
+        $app->pass();
     }
     /*Redtube API has different format if returning only 1 result or many*/
     if(isset($data['results']['video_details']['video']['stars']['star'])) {
@@ -148,22 +144,22 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($pimple) {
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
     $data['seo']['index'] = true;
     
-    $pimple['app']->render('elements/header.php', array('data' => $data));
-    $pimple['app']->render('video.php', array('data' => $data));
-    $pimple['app']->render('elements/footer.php', array('data' => $data));
+    $app->render('elements/header.php', array('data' => $data));
+    $app->render('video.php', array('data' => $data));
+    $app->render('elements/footer.php', array('data' => $data));
 })->name('order');
 
-$app->get('/contact', function () use ($pimple) {
-   //$pimple['app']->render('contact.php');
-   printf('Simple contact page.  Link to <a href="%s">User 11</a>', $pimple['app']->urlFor('user', array('id' => 11)));
+$app->get('/contact', function () use ($app) {
+   //$app->render('contact.php');
+   printf('Simple contact page.  Link to <a href="%s">User 11</a>', $app->urlFor('user', array('id' => 11)));
 });
 
-$app->get('/user/:id', function ($id) use ($pimple) {
-   $pimple['UserController']->find($id);
+$app->get('/user/:id', function ($id) use ($app) {
+   $app['UserController']->find($id);
 })->name('user');
 
-$app->get('/users', function () use ($pimple) {
-   $pimple['UserController']->all();
+$app->get('/users', function () use ($app) {
+   $app['UserController']->all();
 })->name('users');
 
 
