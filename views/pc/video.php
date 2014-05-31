@@ -7,13 +7,13 @@ else {
 }
 
 $tags_text = '';
-foreach($data['results']['video_details']['video']['tags']['tag'] as $tag) { 
+foreach(@$data['results']['video_details']['video']['tags']['tag'] as $tag) { 
     $tags_text .= '<a href="' . $orientation . str_replace(' ', '+', trim($tag)) . '">' . $tag . '</a>, ';
 }
 $tags_text = strtolower(rtrim($tags_text,', '));
 
 $pornstar_text = '';
-foreach($data['results']['video_details']['video']['stars']['star'] as $star) { 
+foreach(@$data['results']['video_details']['video']['stars']['star'] as $star) { 
     $pornstar_text .= '<a href="/' . str_replace(' ', '+', trim($star)) . '">' . $star . '</a>, ';
 }
 $pornstar_text = strtolower(rtrim($pornstar_text,', '));
@@ -37,8 +37,8 @@ $pornstar_text = strtolower(rtrim($pornstar_text,', '));
 								</div>
                                                                 <div class="pull-left">
                                                                     <ul>
-                                                                        <li>Duration: <?=$data['results']['video_details']['video']['@duration']?></li>
-                                                                        <li>Views: <?=$data['results']['video_details']['video']['@views']?></li>
+                                                                        <li>Duration: <?=@$data['results']['video_details']['video']['@duration']?></li>
+                                                                        <li>Views: <?=@$data['results']['video_details']['video']['@views']?></li>
                                                                         <li>Tags: <?=$tags_text?></li>
                                                                         <li>Pornstars: <?=$pornstar_text?></li>
                                                                     </ul>

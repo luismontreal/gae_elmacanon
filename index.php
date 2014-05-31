@@ -159,6 +159,10 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($app) {
         $data['results']['video_details']['video']['tags']['tag'] = array();
     }
     
+    if(empty($data['results']['video_details']['video']['title'])) {
+	$data['results']['video_details']['video']['title'] = 'Another awesome video';
+    }
+    
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
     $data['seo']['index'] = true;
     
