@@ -13,12 +13,12 @@ handlers:
 #PC Assets
 
 - url: /favicon.ico
-  static_files: app/favicon.ico
-  upload: app/favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
   
 - url: /robots.txt
-  static_files: app/robots.txt
-  upload: app/robots.txt
+  static_files: robots.txt
+  upload: robots.txt
   
 - url: /pc/css
   static_dir: views/pc/assets/css
