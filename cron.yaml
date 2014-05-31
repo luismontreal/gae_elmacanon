@@ -1,0 +1,10 @@
+cron:
+- description: sitemap_videos
+  url: /crons/generatesitemap_videos
+  schedule: every 1 hours synchronized
+  timezone: Canada/EST
+  
+- description: sitemap_tags
+  url: /crons/generatesitemap_tags
+  schedule: every day 00:00
+  timezone: Canada/EST

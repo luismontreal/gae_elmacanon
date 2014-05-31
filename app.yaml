@@ -30,6 +30,8 @@ handlers:
   static_dir: views/pc/assets/img
   
 # Serve php scripts.
+- url: /crons/.*
+  script: crons.php
+  
 - url: /.*
   script: index.php
-#  script: vendor/slim/slim/index.php

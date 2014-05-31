@@ -58,7 +58,25 @@ $app->Api = function ($app) {
  * is an anonymous function.
  */
 
-// GET routes
+$app->get('/sitemap.xml', function () use ($app) {
+    $app->response->headers->set('Content-Type', 'text/xml');
+    echo '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>http://www.elmacanon.com/sitemap_tags.xml</loc></sitemap><sitemap><loc>http://www.elmacanon.com/sitemap_videos.xml</loc></sitemap></sitemapindex>';
+});
+
+$app->get('/sitemap_tags.xml', function () use ($app) {
+    $app->response->headers->set('Content-Type', 'text/xml');
+    $memcache = new Memcache;
+    $mc_key = 'sitemap.tags';
+    echo $memcache->get($mc_key);
+});
+
+$app->get('/sitemap_videos.xml', function () use ($app) {   
+    $app->response->headers->set('Content-Type', 'text/xml');
+    $memcache = new Memcache;
+    $mc_key = 'sitemap.videos';
+    echo $memcache->get($mc_key);
+});
+
 //Straight route
 $app->get('/(:search)', function ($search = 'big dick') use ($app) {
     //if search term is gay or straight then go to next route

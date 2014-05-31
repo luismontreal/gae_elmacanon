@@ -129,9 +129,8 @@ class RedtubeController extends Controller
       return $response;
    }
    
-   public function all() {
-      //$this->app->render('users.php', array('users' => $this->service->all()));
-      echo 'Found all users.<br>';
-      var_dump($this->model->all());
+   public function getTags() {
+      $response = $this->model->getTagList();
+      return $response;
    }
 }

@@ -43,7 +43,11 @@ class RedtubeModel
    }
    
    public function getTagList() {
-      return $this->api->countUser();
+      $params['data'] = 'redtube.Tags.getTagList';
+      
+      $redtubeResponse = $this->api->redTubeApiCall($params);
+      
+      return $redtubeResponse;
    }
    
    public function getStarList() {
