@@ -58,6 +58,12 @@ $app->Api = function ($app) {
  * is an anonymous function.
  */
 
+$app->notFound(function () use ($app) {
+    $app->render('elements/header.php');
+    $app->render('404.php');
+    $app->render('elements/footer.php');
+});
+
 $app->get('/sitemap.xml', function () use ($app) {
     $app->response->headers->set('Content-Type', 'text/xml');
     echo '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>http://www.elmacanon.com/sitemap_tags.xml</loc></sitemap><sitemap><loc>http://www.elmacanon.com/sitemap_videos.xml</loc></sitemap></sitemapindex>';
@@ -75,6 +81,23 @@ $app->get('/sitemap_videos.xml', function () use ($app) {
     $memcache = new Memcache;
     $mc_key = 'sitemap.videos';
     echo $memcache->get($mc_key);
+});
+
+$app->get('/page/:page', function ($page) use ($app) {   
+    switch($page) {
+	case 'hot-searches':
+	    $data = $app->RedtubeController->getTags();
+	    $data['seo']['title'] = 'Elmacanon.com: Hot searches';
+	    $data['seo']['index'] = true;
+	     
+	    $app->render('elements/header.php',  array('data' => $data));
+	    $app->render('popular.php',  array('data' => $data));
+	    $app->render('elements/footer.php',  array('data' => $data));
+	    break;
+	default :
+	    $app->notFound();
+	    
+    }
 });
 
 //Straight route

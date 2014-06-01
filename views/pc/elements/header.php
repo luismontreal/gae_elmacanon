@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><?=$data['seo']['title']?></title>
+    <title><?=@$data['seo']['title']?></title>
         <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA" />
         <?if($data['seo']['index']) : ?>
         <meta name="robots" content="index, follow, all" />
