@@ -60,6 +60,9 @@ $app->Api = function ($app) {
 
 $app->get('/crons/generatesitemap_tags', function () use ($app) {
     $data = $app->RedtubeController->getTags();
+    if(empty($data)) {
+	exit('not ok');
+    }
     $sitemap = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     //$time = new DateTime('NOW');
     //$W3cTime = $time->format('Y-m-d');
@@ -79,17 +82,23 @@ $app->get('/crons/generatesitemap_tags', function () use ($app) {
 
     $sitemap .= '</urlset>';
     $memcache = new Memcache();
-    $memcache->set('sitemap.tags', $sitemap, 7200);
+    $memcache->set('sitemap.tags', $sitemap, 0);
     exit('ok');
    });
 
 $app->get('/crons/generatesitemap_videos', function () use ($app) {
     $data = $app->RedtubeController->getTags();
+    if(empty($data)) {
+	exit('not ok');
+    }
     $sitemap = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
     //$time = new DateTime('NOW');
     
     foreach($data['tags']['tag'] as $tag) {
 	$data = $app->RedtubeController->getSearchPage($tag, null, array('page' => 1));
+	if(empty($data)) {
+	    break;
+	}
 	foreach($data['results']['videos'] as $video) {
 	    $sitemap .= '<url>';
 	    $sitemap .= '<loc>http://www.elmacanon.com/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id'] . '</loc>';
@@ -101,7 +110,7 @@ $app->get('/crons/generatesitemap_videos', function () use ($app) {
     
     $sitemap .= '</urlset>';
     $memcache = new Memcache();
-    $memcache->set('sitemap.videos', $sitemap, 7200);
+    $memcache->set('sitemap.videos', $sitemap, 0);
     exit('ok');
 });
 
