@@ -79,7 +79,7 @@ $app->get('/crons/generatesitemap_tags', function () use ($app) {
 
     $sitemap .= '</urlset>';
     $memcache = new Memcache();
-    $memcache->set('sitemap.tags', $sitemap, 0);
+    $memcache->set('sitemap.tags', $sitemap, 7200);
     exit('ok');
    });
 
@@ -101,7 +101,7 @@ $app->get('/crons/generatesitemap_videos', function () use ($app) {
     
     $sitemap .= '</urlset>';
     $memcache = new Memcache();
-    $memcache->set('sitemap.videos', $sitemap, 0);
+    $memcache->set('sitemap.videos', $sitemap, 7200);
     exit('ok');
 });
 
