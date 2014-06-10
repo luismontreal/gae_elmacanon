@@ -1,4 +1,5 @@
 <?php
+set_time_limit(0);
 $_SERVER['SERVER_PORT'] = 80;
 require 'vendor/autoload.php';
 require 'vendor/kint/Kint.class.php';

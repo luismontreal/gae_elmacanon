@@ -1,4 +1,6 @@
 <?php
+//error reporting 0 for prod only
+error_reporting(0);
 $_SERVER['SERVER_PORT'] = 80;
 require 'vendor/autoload.php';
 require 'vendor/kint/Kint.class.php';
