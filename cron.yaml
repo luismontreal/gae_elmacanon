@@ -1,8 +1,8 @@
 cron:
 - description: sitemap_videos
   url: /crons/generatesitemap_videos
-  schedule: every 4 hours synchronized
+  schedule: every 2 minutes from 00:00 to 00:10
   
 - description: sitemap_tags
   url: /crons/generatesitemap_tags
-  schedule: every 4 hours synchronized
+  schedule: every day 00:12
