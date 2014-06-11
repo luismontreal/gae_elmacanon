@@ -20,6 +20,13 @@ require 'app/helpers.php';
 
 //\Slim\Slim::registerAutoloader();
 
+class MyLogWriter {
+    public function write($message, $priority)
+    {
+        syslog($priority, $message);
+    }
+}
+
 /**
  * Step 2: Instantiate a Slim application
  *
@@ -29,9 +36,10 @@ require 'app/helpers.php';
  * of setting names and values into the application constructor.
  */
 $app = new \Slim\Slim(array(
-    'debug' => true,
+    'debug' => false,
     'templates.path' => 'views/pc',
-    'log.enabled' => false,
+    'log.enabled' => true,
+    'log.writer' => new MyLogWriter(),
     'cookies.lifetime' => time() + 31536000, //in 1 year after accesing the site
 ));
 
@@ -103,7 +111,7 @@ $app->get('/page/:page', function ($page) use ($app) {
 });
 
 //Straight route
-$app->get('/(:search)', function ($search = 'big dick') use ($app) {
+$app->get('/(:search)', function ($search = 'big dick') use ($app) {    
     //if search term is gay or straight then go to next route
     if(in_array($search, array('gay','shemale'))) {
         $app->pass();
