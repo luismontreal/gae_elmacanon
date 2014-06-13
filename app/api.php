@@ -37,7 +37,7 @@ class Api {
                     break;
                 case 'redtube.Videos.searchVideos':
                 default:
-                    $ttl = 3600;
+                    $ttl = 3600 * 6;
                     break;
             }
             
