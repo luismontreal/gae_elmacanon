@@ -6,7 +6,7 @@
         <?if($data['seo']['index']) : ?>
         <meta name="robots" content="index, follow, all" />
         <?else:?>
-        <meta name="robots" content="noindex, nofollow" />
+        <meta name="robots" content="noindex, follow" />
         <?endif;?>
         <meta name="google-translate-customization" content="70cb57e407230552-e8217eb3457c16cd-g2436a6e02f0b0e29-11">
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
