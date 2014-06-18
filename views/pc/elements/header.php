@@ -11,15 +11,7 @@
         <meta name="google-translate-customization" content="70cb57e407230552-e8217eb3457c16cd-g2436a6e02f0b0e29-11">
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
         <meta http-equiv="Content-Language" content="en" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />        
-	<link rel="stylesheet" type="text/css" href="/pc/css/bootstrap.min.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
-	<link type="text/css" rel="stylesheet" href="/pc/css/global.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
-	<link type="text/css" rel="stylesheet" href="/pc/css/color-button.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>" />
-	<!-- js Boots_from -->
-	<script src="/pc/js/jquery.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
-        <script src="/pc/js/bootstrap.min.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
-        <script src="/pc/js/custom.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>"></script>
-	<!-- end Boots_from -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
         <!-- Google analytics -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -77,13 +69,7 @@
                                     </li-->
                             </ul>
                             <!--Google Translate -->
-                            <div id="google_translate_element"></div>
-                            <script type="text/javascript">
-                                function googleTranslateElementInit() {
-                                  new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'de,es,it,nl,pt,zh-CN', gaTrack: true, gaId: 'UA-51160359-1'}, 'google_translate_element');
-                                }
-                            </script>
-                            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                            <div id="google_translate_element"></div>                            
                             <!--Ends Google Translate -->
 			</div>
 		</div>
