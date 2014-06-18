@@ -3,6 +3,8 @@ version: 4d
 runtime: php
 api_version: 1
 
+default_expiration: "360d"
+
 handlers:
 # Serve images as static resources.
 #- url: /(.+\.(gif|png|jpg))$
@@ -26,10 +28,10 @@ handlers:
   
 - url: /pc/css
   static_dir: views/pc/assets/css
-
+   
 - url: /pc/js
   static_dir: views/pc/assets/js
-  
+    
 - url: /pc/img
   static_dir: views/pc/assets/img
   
