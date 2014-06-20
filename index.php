@@ -4,6 +4,7 @@ error_reporting(0);
 $_SERVER['SERVER_PORT'] = 80;
 require 'vendor/autoload.php';
 require 'vendor/kint/Kint.class.php';
+require 'vendor/Mobile_Detect.php';
 require 'app/controllers.php';
 require 'app/models.php';
 require 'app/api.php';
@@ -19,6 +20,13 @@ require 'app/helpers.php';
 //require 'Slim/Slim.php';
 
 //\Slim\Slim::registerAutoloader();
+//check wether or not is mobile
+$detect = new Mobile_Detect;
+if($detect->isMobile()) {
+    define('IS_MOBILE', true);    
+} else {
+    define('IS_MOBILE', false);
+}
 
 class MyLogWriter {
     public function write($message, $priority)

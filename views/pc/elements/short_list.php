@@ -46,18 +46,26 @@ $orientation = isset($data['params']['category']) ? '/' . $data['params']['categ
 					</div><!-- end title -->
 				</div>
 				<ul class="thumbnails thumbnails-horizontal">
-					<?php foreach($data['results']['videos'] as $video) : ?>
+					<?php foreach($data['results']['videos'] as $video) : 
+					    if(IS_MOBILE) {						
+						$videoLink = $video['@url'];
+						$target = 'target="_blank"';
+					    } else {
+						$videoLink = '/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id'];
+						$target = '';
+					    }
+					?>
                                         <li class="span3">
 						<div class="thumbnail border-radius-top">
 							<div class="bg-thumbnail-img">
 								<!--a class="overlay" href="detail.html">
 									<img src="/pc/img/icons/play.png">
 								</a-->
-								<a href="<?='/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id']?>">
+								<a href="<?=$videoLink?>" <?=$target?>>
                                                                     <img class="border-radius-top flipbook-thumb" src="<?=$video['@default_thumb']?>">
                                                                 </a>
 							</div>
-                                                    <h5><a href="<?='/video/' . Helpers::slugify($video['title']) . '/' . $video['@video_id']?>"><?= $video['title']?></a></h5>
+                                                    <h5><a href="<?=$videoLink?>" <?=$target?>><?= $video['title']?></a></h5>
 						</div>
 						<div class="box border-radius-bottom">
 							<p>
