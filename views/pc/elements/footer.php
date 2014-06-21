@@ -50,13 +50,12 @@
     function googleTranslateElementInit() {
 	new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'de,es,it,nl,pt,zh-CN', gaTrack: true, gaId: 'UA-51160359-1'}, 'google_translate_element');
     }
-    
+    <?php if(isset($_GET['nominify'])):?>
     cssFileList = [		   
 		    "/pc/css/bootstrap.min.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
 		    "/pc/css/global.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
 		    "/pc/css/color-button.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",		    
     ];
-    head.load(cssFileList);
     
     jsFileList = [		   
 		    "/pc/js/jquery.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
@@ -64,7 +63,22 @@
 		    "/pc/js/custom.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
 		    "http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ];
-    head.load(jsFileList);            
+    
+    head.load(cssFileList);
+    head.load(jsFileList);
+    <?php else:?>
+    cssFileList = [		   
+		    "/pc/css/allcss.css?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",		    
+    ];
+    
+    jsFileList = [		   
+		    "/pc/js/alljs.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
+		    "http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ];
+    
+    head.load(cssFileList);
+    head.load(jsFileList);
+    <?php endif;?>
 </script>
 </html>
 
