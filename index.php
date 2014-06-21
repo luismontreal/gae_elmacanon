@@ -28,6 +28,7 @@ if($detect->isMobile()) {
     define('IS_MOBILE', false);
 }
 
+/*Custom Logger*/
 class MyLogWriter {
     public function write($message, $priority)
     {
@@ -35,6 +36,23 @@ class MyLogWriter {
     }
 }
 
+/*Middleware*/
+class HtmlMinifierMiddleware extends \Slim\Middleware
+{
+    public function call()
+    {
+        // Get reference to application
+        $app = $this->app;
+
+        // Run inner middleware and application
+        $this->next->call();
+
+        // Capitalize response body
+        $res = $app->response;
+        $body = $res->getBody();
+        $res->setBody(Helpers::sanitize_output($body));
+    }
+}
 /**
  * Step 2: Instantiate a Slim application
  *
@@ -50,6 +68,10 @@ $app = new \Slim\Slim(array(
     'log.writer' => new MyLogWriter(),
     'cookies.lifetime' => time() + 31536000, //in 1 year after accesing the site
 ));
+
+if(!isset($_GET['nominify'])) {
+    $app->add(new \HtmlMinifierMiddleware());
+}
 
 /* 
  * Dependency injection
