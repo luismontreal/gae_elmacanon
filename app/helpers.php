@@ -120,5 +120,29 @@ static public function xmlToArray(SimpleXMLElement $xml, $options = array()) {
 
 	    return $buffer;
 	}
+	
+	static public function isXML($xml){
+	    libxml_use_internal_errors(true);
+
+	    $doc = new DOMDocument('1.0', 'utf-8');
+	    $doc->loadXML($xml);
+
+	    $errors = libxml_get_errors();
+
+	    if(empty($errors)){
+		return true;
+	    }
+
+	    $error = $errors[0];
+	    if($error->level < 3){
+		return true;
+	    }
+
+	    $explodedxml = explode("r", $xml);
+	    $badxml = $explodedxml[($error->line)-1];
+
+	    $message = $error->message . ' at line ' . $error->line . '. Bad XML: ' . htmlentities($badxml);
+	    return $message;
+	}
 }
 ?>

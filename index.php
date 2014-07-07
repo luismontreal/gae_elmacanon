@@ -183,7 +183,7 @@ $app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick
         'order' => $app->request->get('order'),
     );
     
-    $app>setCookie('orientation', $orientation);
+    $app->setCookie('orientation', $orientation);
             
     $data = $app->RedtubeController->getSearchPage($search, $orientation, $options);
     
