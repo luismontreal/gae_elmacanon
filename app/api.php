@@ -29,7 +29,7 @@ class Api {
         $mckey = $this->memcache_prefix.$query_string;
         $content = $memcache->get($mckey);
         
-        if($content === FALSE || isset($_GET['clearCacheSuperSecret'])) {
+        if(empty($content) || isset($_GET['clearCacheSuperSecret'])) {
             switch ($params['data']) {
                 case 'redtube.Videos.getVideoEmbedCode':
                 case 'redtube.Videos.getVideoById':

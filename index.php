@@ -36,21 +36,28 @@ class MyLogWriter {
     }
 }
 
-/*Middleware*/
-class HtmlMinifierMiddleware extends \Slim\Middleware
-{
-    public function call()
-    {
+/*Middleware to cache html pages and minify html*/
+class HtmlMinifierMiddleware extends \Slim\Middleware {
+    public function call() {	
         // Get reference to application
         $app = $this->app;
+	$res = $app->response;
+	
+	$memcache = new Memcache;
+        $mckey = 'page:'.$_SERVER['REQUEST_URI'];
+	
+        $body = $memcache->get($mckey);
 
-        // Run inner middleware and application
-        $this->next->call();
+	if(empty($body) || isset($_GET['clearCacheSuperSecret'])) {
+	    // Run inner middleware and application
+	    $this->next->call();
 
-        // Capitalize response body
-        $res = $app->response;
-        $body = $res->getBody();
-        $res->setBody(Helpers::sanitize_output($body));
+	    // Strip spaces	    
+	    $body = Helpers::sanitize_output($res->getBody());	   
+	    $memcache->set($mckey,  $body, 3600);	    
+	} 
+	
+	$res->setBody($body);	
     }
 }
 /**
