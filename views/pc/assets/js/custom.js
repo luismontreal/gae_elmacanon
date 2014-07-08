@@ -29,6 +29,10 @@ function parseURL(url) {
 (function($){
 		
 	$(document).ready(function(){
+		//Lazy load
+		$("img.flipbook-thumb").lazyload();
+		//ends lazy load
+		//class change on search bar
 		$('input.box-text').bind('focus blur', function(){
 			$(this).toggleClass('focus');
 		});

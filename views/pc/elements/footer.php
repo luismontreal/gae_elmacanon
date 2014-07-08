@@ -58,8 +58,9 @@
     ];
     
     jsFileList = [		   
-		    "/pc/js/jquery.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
+		    "/pc/js/jquery.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",			    
 		    "/pc/js/bootstrap.min.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
+		    "/pc/js/jquery.lazyload.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
 		    "/pc/js/custom.js?v=<?=$_SERVER['CURRENT_VERSION_ID']?>",
 		    "http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ];
