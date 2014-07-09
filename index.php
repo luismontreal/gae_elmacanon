@@ -1,6 +1,14 @@
 <?php
 //error reporting 0 for prod only
-error_reporting(0);
+if($_SERVER['SERVER_NAME'] != 'localhost' && strpos($_SERVER['SERVER_NAME'], '.test.') === false) {
+    // This is prod
+    $debug = false;
+    error_reporting(0);
+} else {    
+    // This is dev and test
+    $debug = true;
+}
+
 $_SERVER['SERVER_PORT'] = 80;
 require 'vendor/autoload.php';
 require 'vendor/kint/Kint.class.php';
@@ -42,6 +50,31 @@ class HtmlMinifierMiddleware extends \Slim\Middleware {
         // Get reference to application
         $app = $this->app;
 	$res = $app->response;
+	$path = $app->request->getPath();
+	
+	//if user's cookie is gay/shemale redirect to that url
+	$orientation = $app->getCookie('orientation');
+	if($path == '/' && in_array($orientation, array('gay', 'shemale'))) {
+	    $requestsStraight = $app->request->get('straight');
+
+	    if(!empty($requestsStraight)) {
+		$app->setCookie('orientation', 'straight');
+	    } else {		
+		$app->response->redirect('/' . $orientation);		
+	    }
+	}
+		
+	if($path == '/' && $orientation != 'straight') {
+	    $app->setCookie('orientation', 'straight');
+	}
+	
+	if($path == '/gay' && $orientation != 'gay') {
+	    $app->setCookie('orientation', 'gay');
+	}
+	
+	if($path == '/shemale' && $orientation != 'shemale') {
+	    $app->setCookie('orientation', 'shemale');
+	}
 	
 	$memcache = new Memcache;
         $mckey = 'page:'.$_SERVER['REQUEST_URI'];
@@ -69,7 +102,7 @@ class HtmlMinifierMiddleware extends \Slim\Middleware {
  * of setting names and values into the application constructor.
  */
 $app = new \Slim\Slim(array(
-    'debug' => false,
+    'debug' => $debug,
     'templates.path' => 'views/pc',
     'log.enabled' => true,
     'log.writer' => new MyLogWriter(),
@@ -153,24 +186,7 @@ $app->get('/(:search)', function ($search = 'big dick') use ($app) {
     if(in_array($search, array('gay','shemale'))) {
         $app->pass();
     }
-    
-    //if user's cookie is gay/shemale redirect to that url
-    $orientation = $app->getCookie('orientation');
-    if(in_array($orientation, array('gay', 'shemale'))) {
-        $requestsStraight = $app->request->get('straight');
-        
-        if(!empty($requestsStraight)) {
-            $app->setCookie('orientation', 'straight');
-            $app->redirect('/');
-        } else {
-            $app->redirect('/' . $orientation);
-        }
-    }
-    
-    if($orientation != 'straight') {
-        $app->setCookie('orientation', 'straight');
-    }
-    
+            
     $options = array(
         'page' => $app->request->get('page'),
         'order' => $app->request->get('order'),
@@ -189,9 +205,7 @@ $app->get('/:orientation(/:search)', function ($orientation, $search = 'big dick
         'page' => $app->request->get('page'),
         'order' => $app->request->get('order'),
     );
-    
-    $app->setCookie('orientation', $orientation);
-            
+                    
     $data = $app->RedtubeController->getSearchPage($search, $orientation, $options);
     
     //templates
