@@ -60,7 +60,7 @@ class Api {
 	    }
 	    
             $content =  Helpers::xmlToArray(new SimpleXMLElement($content));	    	    
-            $memcache->set($mckey,  $content, $ttl);
+            $memcache->set($mckey,  $content, MEMCACHE_COMPRESSED, $ttl);
         }
 
         //sd($this->memcache_prefix.$query_string);

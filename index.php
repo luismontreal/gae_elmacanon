@@ -54,7 +54,7 @@ class HtmlMinifierMiddleware extends \Slim\Middleware {
 
 	    // Strip spaces	    
 	    $body = Helpers::sanitize_output($res->getBody());	   
-	    $memcache->set($mckey,  $body, 3600);	    
+	    $memcache->set($mckey,  $body, MEMCACHE_COMPRESSED, 3600);	    
 	} 
 	
 	$res->setBody($body);	
