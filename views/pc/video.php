@@ -19,9 +19,9 @@ foreach(@$data['results']['video_details']['video']['stars']['star'] as $star) {
 $pornstar_text = strtolower(rtrim($pornstar_text,', '));
 
 ?>
-<div class="main">
-	<div class="container">
-		<div class="row">
+    <div class="main">
+	    <div class="container">
+		    <div class="row">
 			<div class="box-wrapper span9">
 				<div class="row">
 					<div class="box-content-widget box-video-play span9">
@@ -48,133 +48,8 @@ $pornstar_text = strtolower(rtrim($pornstar_text,', '));
 					</div><!-- end video-play -->
 				</div>
 			
-			</div><!-- end body-content -->
-			
-                        
-                        
-			<!--div class="sidebar-content span3">
-				<div class="row">
-					<div class="box-wrapper span3">
-						<div class="row">
-							<div class="title bg-title span3">
-								<h3>Recommended</h3>
-							</div>
-						</div>
-						<ul class="thumbnails thumbnails-horizontal">
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-										<img class="border-radius-top" src="/pc/img/project/pj1.jpg">
-									</div>
-									<h5><a href="detail.html">Lorem ipsum dolor sit  </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-									<img class="border-radius-top" src="/pc/img/project/pj2.jpg">
-									</div>
-									
-									<h5><a href="detail.html">Lorem ipsum dolor sit </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-									<img class="border-radius-top" src="/pc/img/project/pj3.jpg">
-									</div>
-									
-									<h5><a href="detail.html">Lorem ipsum dolor sit </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-									<img class="border-radius-top" src="/pc/img/project/pj4.jpg">
-									</div>
-									
-									<h5><a href="detail.html">Lorem ipsum dolor sit </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-									<img class="border-radius-top" src="/pc/img/project/pj5.jpg">
-									</div>
-									
-									<h5><a href="detail.html">Lorem ipsum dolor sit </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-
-							<li class="span3">
-								<div class="thumbnail border-radius-top">
-									<div class="bg-thumbnail-img">
-										<a class="overlay" href="detail.html">
-											<img src="/pc/img/icons/play.png">
-										</a>
-									<img class="border-radius-top" src="/pc/img/project/pj8.jpg">
-									</div>
-									
-									<h5><a href="detail.html">Lorem ipsum dolor sit </a></h5>
-								</div>
-								<div class="box border-radius-bottom">
-									<p>
-										<span class="title_torrent pull-left">Movie</span>
-										<span class="number-view pull-right"><i class="icon-white icon-eye-open"></i>1,444,898</span>
-									</p>
-								</div>
-							</li>
-						</ul>
-					</div><!-- end thumbnails-style1 -->
-				</div><!-- row -->
-
-			</div--><!-- end sidebar-content -->
+			</div><!-- end body-content -->			
+		    </div><!-- row -->		   
 		</div><!-- row -->
 	</div><!-- end container -->
 </div><!-- end main -->

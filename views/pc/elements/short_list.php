@@ -57,10 +57,7 @@ $orientation = isset($data['params']['category']) ? '/' . $data['params']['categ
 					?>
                                         <li class="span3">
 						<div class="thumbnail border-radius-top">
-							<div class="bg-thumbnail-img">
-								<!--a class="overlay" href="detail.html">
-									<img src="/pc/img/icons/play.png">
-								</a-->
+							<div class="bg-thumbnail-img">							
 								<a href="<?=$videoLink?>" <?=$target?>>
                                                                     <img alt="<?= $video['title']?>" title="<?= $video['title']?>" class="border-radius-top flipbook-thumb" data-original="<?=$video['@default_thumb']?>">
                                                                 </a>

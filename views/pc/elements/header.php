@@ -37,36 +37,7 @@
 				<ul class="nav pull-left nav-tabs">
                                     <li <?= empty($data['params']['category']) || $data['params']['category'] == 'straight'? 'class="active"' : '';?>><a href="/?straight=1">Straight</a></li>
                                     <li <?= !empty($data['params']['category']) && $data['params']['category'] == 'gay' ? 'class="active"' : '';?>><a href="/gay">Gay</a></li>
-                                    <li <?= !empty($data['params']['category']) && $data['params']['category'] == 'shemale' ? 'class="active"' : '';?>><a href="/shemale">Shemale</a></li>
-                                    <!--li><a href="element.html">Element</a></li>
-                                    <li><a href="detail.html">Detail</a></li>
-                                    <li><a href="pricing-plans.html">Pricing Plans</a></li>
-                                                    <li><a href="grid-layout.html">Grid Layout</a></li>
-
-                                    <li class="divider-vertical"></li>
-
-                                    <li class="avatar_small"><a href="account.html"></a></li>
-                                    <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                                    john doe
-                                                    <b class="caret"></b>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                                    <li>
-                                                                            <a href="profile.html">
-                                                                                    <i class="icon-user"></i>
-                                                                                    Account Setting  </a>
-                                                                    </li>
-                                                                    <li>
-                                                                            <a href="setting.html">
-                                                                                    <i class="icon-lock"></i> Change Password</a>
-                                                                    </li>
-                                                                    <li class="divider"></li>
-                                                                    <li>
-                                                                            <a href="login.html"><i class="icon-off"></i> Logout</a>
-                                                                    </li>
-                                                            </ul>
-                                    </li-->
+                                    <li <?= !empty($data['params']['category']) && $data['params']['category'] == 'shemale' ? 'class="active"' : '';?>><a href="/shemale">Shemale</a></li>                                   
                             </ul>
                             <!--Google Translate -->
                             <div id="google_translate_element"></div>                            
