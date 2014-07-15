@@ -4,3 +4,6 @@ Sitemap: http://www.elmacanon.com/sitemap.xml
 
 User-agent: MJ12bot
 Disallow: /
+
+User-agent: BLEXBot
+Disallow: /

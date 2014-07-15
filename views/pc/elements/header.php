@@ -26,7 +26,7 @@
         
 </head>
 
-<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true">
+<body data-spy="scroll" data-target=".subnav" data-offset="50" data-twttr-rendered="true" onload="loadAssets();">
 <div class="navbar navbar-fixed-top">
 	<div class="navbar-inner">
 		<div class="container">
