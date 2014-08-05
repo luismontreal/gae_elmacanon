@@ -191,8 +191,12 @@ $app->get('/(:search)', function ($search = 'big dick') use ($app) {
         'page' => $app->request->get('page'),
         'order' => $app->request->get('order'),
     );
-    
+            
     $data = $app->RedtubeController->getSearchPage($search, null, $options);
+    
+    if($options['page'] > 9) {
+	$data['seo']['index'] = false;
+    }
     
     //templates
     $app->render('elements/header.php', array('data' => $data));
