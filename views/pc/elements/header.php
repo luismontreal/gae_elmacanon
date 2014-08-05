@@ -3,11 +3,13 @@
 <head>
     <title><?=@$data['seo']['title']?></title>
         <meta name="RATING" content="RTA-5042-1996-1400-1577-RTA" />
-        <?if($data['seo']['index']) : ?>
-        <meta name="robots" content="index, follow, all" />
-        <?else:?>
-        <meta name="robots" content="noindex, follow" />
-        <?endif;?>
+        
+	<?php 
+	if(empty($data['seo']['index'])) {
+	    $data['seo']['index'] = 'noindex, nofollow';
+	}
+	?>
+        <meta name="robots" content="<?=$data['seo']['index']?>" />                        
         <meta name="google-translate-customization" content="70cb57e407230552-e8217eb3457c16cd-g2436a6e02f0b0e29-11">
         <meta name="google-site-verification" content="68aQQc78KavTc4VbdY1ZrApV5RPGlpvlAbTlr5ZavJk" />
         <meta http-equiv="Content-Language" content="en" />

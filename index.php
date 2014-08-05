@@ -168,7 +168,7 @@ $app->get('/page/:page', function ($page) use ($app) {
 	case 'hot-searches':
 	    $data = $app->RedtubeController->getTags();
 	    $data['seo']['title'] = 'Elmacanon.com: Hot searches';
-	    $data['seo']['index'] = true;
+	    $data['seo']['index'] = 'index, follow, all';
 	     
 	    $app->render('elements/header.php',  array('data' => $data));
 	    $app->render('popular.php',  array('data' => $data));
@@ -194,8 +194,8 @@ $app->get('/(:search)', function ($search = 'big dick') use ($app) {
             
     $data = $app->RedtubeController->getSearchPage($search, null, $options);
     
-    if($options['page'] > 9) {
-	$data['seo']['index'] = false;
+    if($options['page'] < 10) {
+	$data['seo']['index'] = 'index, follow, all';
     }
     
     //templates
@@ -252,7 +252,7 @@ $app->get('/video/:slug/:video_id', function ($slug, $video_id) use ($app) {
     }
     
     $data['seo']['title'] = 'Elmacanon: ' . $data['results']['video_details']['video']['title'];
-    $data['seo']['index'] = true;
+    $data['seo']['index'] = 'index, follow, all';
     
     $app->render('elements/header.php', array('data' => $data));
     $app->render('video.php', array('data' => $data));
